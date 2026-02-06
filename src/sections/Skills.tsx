@@ -8,7 +8,6 @@ import {
   Cpu, 
   GitBranch, 
   BarChart3,
-  Cloud,
   Database
 } from 'lucide-react';
 
