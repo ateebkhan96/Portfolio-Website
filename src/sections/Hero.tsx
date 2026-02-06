@@ -114,7 +114,7 @@ const Hero = () => {
             className="flex items-center justify-center gap-2 text-gray-500 mb-4"
           >
             <MapPin className="w-4 h-4" />
-            <span className="text-sm">India • Open to Remote/Global Opportunities</span>
+            <span className="text-sm">India</span>
           </motion.div>
 
           {/* Tagline */}
@@ -187,7 +187,7 @@ const Hero = () => {
               <Github className="w-5 h-5" />
             </a>
             <a
-              href="#"
+              href="https://x.com/ateebkhan49"
               target="_blank"
               rel="noopener noreferrer"
               className="w-12 h-12 rounded-xl glass flex items-center justify-center text-gray-400 hover:text-white hover:bg-purple-500/20 transition-all"
