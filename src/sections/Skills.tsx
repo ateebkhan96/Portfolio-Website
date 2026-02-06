@@ -43,11 +43,6 @@ const Skills = () => {
       skills: ['Git & GitHub', 'Docker', 'MLflow', 'Weights & Biases', 'Streamlit', 'Flask', 'FastAPI'],
     },
     {
-      title: 'Cloud & Databases',
-      icon: Cloud,
-      skills: ['AWS (S3, EC2, SageMaker)', 'Google Cloud Platform', 'PostgreSQL', 'MongoDB', 'Redis'],
-    },
-    {
       title: 'Specializations',
       icon: Cpu,
       skills: ['Medical Image Analysis', 'Edge AI (TensorFlow Lite)', 'Real-time CV', 'Time Series Forecasting', 'NLP'],
