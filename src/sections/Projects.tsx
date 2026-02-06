@@ -38,19 +38,21 @@ const Projects = () => {
       icon: Sparkles,
     },
     {
-      title: 'Dynamic Ride Pricing Model',
-      description: 'Novel ML system integrating multiple data sources for real-time pricing optimization in ride-sharing applications with sentiment analysis.',
-      image: '/project-pricing.jpg',
-      demoLink: '#',
-      githubLink: '#',
-      metrics: [
-        { label: 'Accuracy', value: '73%', icon: TrendingUp },
-        { label: 'Improvement', value: 'vs 27% baseline', icon: Activity },
-      ],
-      techStack: ['LSTM', 'Time Series', 'Sentiment Analysis', 'XGBoost', 'Wavelet Denoising'],
-      featured: false,
-      icon: TrendingUp,
-    },
+    title: 'Real-Time Hand Tracking (MediaPipe)',
+    description:
+      'Real-time hand detection and landmark tracking using MediaPipe and OpenCV. Tracks finger joints and hand movement live from webcam feed for gesture-based applications.',
+    image: '/project-handtracking.png',
+    demoLink: 'https://github.com/ateebkhan96/HandTracking',
+    githubLink: 'https://github.com/ateebkhan96/HandTracking',
+    metrics: [
+      { label: 'Real-Time', value: '30+ FPS', icon: Activity },
+      { label: 'Landmarks', value: '21 points/hand', icon: TrendingUp },
+    ],
+    techStack: ['MediaPipe', 'OpenCV', 'Python', 'Computer Vision', 'Real-Time'],
+    featured: false,
+    icon: Activity,
+  },
+
   ];
 
   return (
