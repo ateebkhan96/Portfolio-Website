@@ -95,7 +95,7 @@ const About = () => {
                 asChild
                 className="gradient-bg text-white px-6 py-3 rounded-xl hover:opacity-90 transition-all"
               >
-                <a href="/Resume/Ateeb_Ahmed_Khan_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                <a href="/Resume/Ateeb_Khan_Resume.pdf" target="_blank" rel="noopener noreferrer">
                   <ExternalLink className="w-4 h-4 mr-2" />
                   View Resume
                 </a>

@@ -106,9 +106,9 @@ const Contact = () => {
       isX: false,
     },
     {
-      icon: Linkedin, // dummy, won't be used
+      icon: Linkedin,
       label: 'X (Twitter)',
-      href: '#', // Placeholder - user will update later
+      href: 'https://x.com/ateebkhan49',
       color: 'hover:bg-gray-800/40 hover:text-white',
       isX: true,
     },

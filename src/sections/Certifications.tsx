@@ -16,7 +16,7 @@ const Certifications = () => {
       date: '2023',
       description: 'Comprehensive ML specialization covering supervised learning, unsupervised learning, and best practices.',
       skills: ['Supervised Learning', 'Neural Networks', 'Decision Trees', 'Clustering'],
-      verifyLink: '#',
+      verifyLink: 'https://coursera.org/share/621d54ca900b9629fe89ca5ae0af248b',
       color: 'from-red-500 to-orange-500',
     },
     {
@@ -26,7 +26,7 @@ const Certifications = () => {
       date: '2023',
       description: 'Professional certificate in data analytics using Google tools and methodologies.',
       skills: ['Data Cleaning', 'SQL', 'Data Visualization', 'R Programming'],
-      verifyLink: '#',
+      verifyLink: 'https://coursera.org/share/43280afd1564bc01665ae5ed1ee8ea25',
       color: 'from-blue-500 to-cyan-500',
     },
     {
@@ -36,7 +36,7 @@ const Certifications = () => {
       date: '2023',
       description: 'Advanced computer vision techniques using OpenCV and deep learning frameworks.',
       skills: ['OpenCV', 'CNN', 'Image Processing', 'Object Detection'],
-      verifyLink: '#',
+      verifyLink: 'https://www.udemy.com/certificate/UC-78726a98-f35b-4ee8-afe0-e10b5f127149/',
       color: 'from-purple-500 to-pink-500',
     },
   ];

@@ -20,7 +20,6 @@ const Experience = () => {
         'Designed and delivered a complete AI/ML fundamentals course',
         'Produced 60+ educational videos and structured learning modules',
         'Translated core AI/ML concepts into practical, project-driven instruction',
-        'Led interactive bootcamps and created comprehensive teaching materials',
       ],
     },
     {
@@ -48,7 +47,6 @@ const Experience = () => {
         'Cleaned, standardized, and structured CRM datasets in MS Excel',
         'Supported automated marketing campaigns across Mailmodo and Yellow.ai platforms',
         'Bridged technical and marketing operations',
-        'Implemented data-driven marketing strategies',
       ],
     },
     {

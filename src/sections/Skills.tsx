@@ -19,12 +19,12 @@ const Skills = () => {
     {
       title: 'Languages',
       icon: Code2,
-      skills: ['Python', 'SQL', 'JavaScript', 'C++'],
+      skills: ['Python', 'SQL', 'JavaScript'],
     },
     {
       title: 'ML & Deep Learning',
       icon: Brain,
-      skills: ['TensorFlow', 'PyTorch', 'Keras', 'Scikit-learn', 'XGBoost', 'LightGBM', 'Hugging Face'],
+      skills: ['TensorFlow', 'PyTorch', 'Keras', 'Scikit-learn', 'XGBoost', 'Hugging Face'],
     },
     {
       title: 'Computer Vision',
@@ -127,7 +127,7 @@ const Skills = () => {
         >
           <p className="text-gray-400 mb-4">Also experienced with:</p>
           <div className="flex flex-wrap justify-center gap-2">
-            {['Jupyter', 'Google Colab', 'VS Code', 'Linux', 'Bash Scripting', 'CI/CD', 'Unit Testing', 'Data Pipelines', 'Model Optimization', 'A/B Testing'].map((skill) => (
+            {['Jupyter', 'Google Colab', 'VS Code', 'Linux', 'Unit Testing', 'Data Pipelines', 'Model Optimization'].map((skill) => (
               <span
                 key={skill}
                 className="px-4 py-2 rounded-full glass text-gray-300 text-sm hover:bg-purple-500/20 hover:text-purple-400 transition-all cursor-default"
