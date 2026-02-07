@@ -14,7 +14,7 @@ const Projects = () => {
       description: 'State-of-the-art MRI tumor detection system using YOLO11 architecture with focus on medical diagnostic accuracy and real-time inference capabilities.',
       image: '/project-brain-tumor.jpg',
       demoLink: 'https://brain-tumor-det.streamlit.app/',
-      githubLink: '#',
+      githubLink: 'https://github.com/ateebkhan96/Brain-Tumor-Detection-using-YOLO11',
       metrics: [
         { label: 'mAP@0.5', value: '95.1%', icon: TrendingUp },
         { label: 'Precision', value: '92.7%', icon: Activity },
@@ -28,7 +28,7 @@ const Projects = () => {
       description: 'Real-time face mask detection system for public safety applications using deep learning and edge deployment optimization with TensorFlow Lite.',
       image: '/project-face-mask.jpg',
       demoLink: 'https://face-mask-detection-system.streamlit.app/',
-      githubLink: '#',
+      githubLink: 'https://github.com/ateebkhan96/face-mask-detection-system',
       metrics: [
         { label: 'Accuracy', value: '98.99%', icon: TrendingUp },
         { label: 'Dataset', value: '992 Images', icon: Activity },
