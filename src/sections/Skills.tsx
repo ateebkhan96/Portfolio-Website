@@ -37,6 +37,11 @@ const Skills = () => {
       skills: ['Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'Plotly', 'Data Visualization', 'EDA', 'Feature Engineering'],
     },
     {
+      title: 'LLM & RAG',
+      icon: Database,
+      skills: ['LangChain', 'ChromaDB', 'Groq', 'RAG Pipelines', 'Prompt Engineering', 'Embeddings'],
+    },
+    {
       title: 'MLOps & Tools',
       icon: GitBranch,
       skills: ['Git & GitHub', 'Docker', 'MLflow', 'Weights & Biases', 'Streamlit', 'Flask', 'FastAPI'],

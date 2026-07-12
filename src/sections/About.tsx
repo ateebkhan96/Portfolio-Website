@@ -12,8 +12,8 @@ const About = () => {
     {
       degree: 'Master of Science in Computer Science',
       institution: 'IU International University of Applied Sciences, Berlin',
-      period: '07/2023 - Present',
-      type: 'Distance Learning',
+      period: '07/2023 - 2026',
+      type: 'Thesis Defended · Degree Conferral Pending',
     },
     {
       degree: 'Bachelor of Technology in Robotics and Automation',
@@ -79,16 +79,18 @@ const About = () => {
               </div>
               
               <p className="text-gray-300 leading-relaxed mb-6">
-                Machine Learning Engineer specializing in computer vision and applied data analytics, 
+                Machine Learning Engineer specializing in computer vision and LLM/RAG systems, 
                 proficient in designing, developing, and deploying scalable ML models using Python, 
-                TensorFlow, and PyTorch. Proven ability to transform complex data into high-quality, 
-                production-ready solutions that drive business value.
+                TensorFlow, PyTorch, and LangChain. Proven ability to transform complex data into 
+                high-quality, production-ready solutions that drive real-world value.
               </p>
 
               <p className="text-gray-400 leading-relaxed mb-6">
                 Skilled in end-to-end ML pipelines with a focus on model reliability, deployment 
-                efficiency, and real-world impact. Experienced in medical image analysis, real-time 
-                computer vision systems, and edge AI deployment.
+                efficiency, and real-world impact. Experienced in medical image analysis, 
+                retrieval-augmented generation, and real-time computer vision systems. MSc thesis 
+                compared ResNet-50 and Vision Transformer explainability methods on brain tumor 
+                classification (~99% accuracy).
               </p>
 
               <Button 

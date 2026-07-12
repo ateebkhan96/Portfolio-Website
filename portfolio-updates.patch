@@ -1,0 +1,127 @@
+diff --git a/src/sections/About.tsx b/src/sections/About.tsx
+index 16c46ca..0f6ab9e 100644
+--- a/src/sections/About.tsx
++++ b/src/sections/About.tsx
+@@ -12,8 +12,8 @@ const About = () => {
+     {
+       degree: 'Master of Science in Computer Science',
+       institution: 'IU International University of Applied Sciences, Berlin',
+-      period: '07/2023 - Present',
+-      type: 'Distance Learning',
++      period: '07/2023 - 2026',
++      type: 'Thesis Defended · Degree Conferral Pending',
+     },
+     {
+       degree: 'Bachelor of Technology in Robotics and Automation',
+@@ -79,16 +79,18 @@ const About = () => {
+               </div>
+               
+               <p className="text-gray-300 leading-relaxed mb-6">
+-                Machine Learning Engineer specializing in computer vision and applied data analytics, 
++                Machine Learning Engineer specializing in computer vision and LLM/RAG systems, 
+                 proficient in designing, developing, and deploying scalable ML models using Python, 
+-                TensorFlow, and PyTorch. Proven ability to transform complex data into high-quality, 
+-                production-ready solutions that drive business value.
++                TensorFlow, PyTorch, and LangChain. Proven ability to transform complex data into 
++                high-quality, production-ready solutions that drive real-world value.
+               </p>
+ 
+               <p className="text-gray-400 leading-relaxed mb-6">
+                 Skilled in end-to-end ML pipelines with a focus on model reliability, deployment 
+-                efficiency, and real-world impact. Experienced in medical image analysis, real-time 
+-                computer vision systems, and edge AI deployment.
++                efficiency, and real-world impact. Experienced in medical image analysis, 
++                retrieval-augmented generation, and real-time computer vision systems. MSc thesis 
++                compared ResNet-50 and Vision Transformer explainability methods on brain tumor 
++                classification (~99% accuracy).
+               </p>
+ 
+               <Button 
+diff --git a/src/sections/Experience.tsx b/src/sections/Experience.tsx
+index 2623346..2c80c48 100644
+--- a/src/sections/Experience.tsx
++++ b/src/sections/Experience.tsx
+@@ -15,10 +15,10 @@ const Experience = () => {
+       location: 'Remote',
+       period: 'July 2025 - Present',
+       current: true,
+-      description: 'Leading AI/ML education initiatives and creating comprehensive learning materials.',
++      description: 'Leading AI/ML curriculum development and creating comprehensive learning materials.',
+       responsibilities: [
+-        'Designed and delivered a complete AI/ML fundamentals course',
+-        'Produced 60+ educational videos and structured learning modules',
++        'Built a complete AI/ML curriculum spanning 25+ modules and 100-125 lessons',
++        'Designed structured learning tracks across foundational AI and applied ML',
+         'Translated core AI/ML concepts into practical, project-driven instruction',
+       ],
+     },
+@@ -36,19 +36,6 @@ const Experience = () => {
+         'Focused on reproducible pipelines and functional inference',
+       ],
+     },
+-    {
+-      company: 'UpGrad',
+-      role: 'Senior Executive Marketing and Tech',
+-      location: 'Remote',
+-      period: 'September 2023 - December 2023',
+-      current: false,
+-      description: 'Bridged technical and marketing operations with data-driven approaches.',
+-      responsibilities: [
+-        'Cleaned, standardized, and structured CRM datasets in MS Excel',
+-        'Supported automated marketing campaigns across Mailmodo and Yellow.ai platforms',
+-        'Bridged technical and marketing operations',
+-      ],
+-    },
+     {
+       company: 'Feynn Labs',
+       role: 'Machine Learning Intern',
+diff --git a/src/sections/Projects.tsx b/src/sections/Projects.tsx
+index d80ddaf..951f468 100644
+--- a/src/sections/Projects.tsx
++++ b/src/sections/Projects.tsx
+@@ -1,7 +1,7 @@
+ import { motion } from 'framer-motion';
+ import { useInView } from 'framer-motion';
+ import { useRef } from 'react';
+-import { ExternalLink, Github, Sparkles, TrendingUp, Activity, Brain } from 'lucide-react';
++import { ExternalLink, Github, Sparkles, TrendingUp, Activity, Brain, MessageSquare } from 'lucide-react';
+ import { Button } from '@/components/ui/button';
+ 
+ const Projects = () => {
+@@ -23,6 +23,20 @@ const Projects = () => {
+       featured: true,
+       icon: Brain,
+     },
++    {
++      title: 'Document Q&A with RAG',
++      description: 'Retrieval-augmented generation system for natural-language Q&A over documents, combining semantic search with LLM-powered answer generation.',
++      image: '/project-rag.jpg',
++      demoLink: 'https://ateebkhan96-document-qa-rag-app-1u18bq.streamlit.app/',
++      githubLink: 'https://github.com/ateebkhan96',
++      metrics: [
++        { label: 'Vector DB', value: 'ChromaDB', icon: Activity },
++        { label: 'LLM', value: 'LLaMA 3.3-70B', icon: TrendingUp },
++      ],
++      techStack: ['LangChain', 'ChromaDB', 'Groq', 'all-MiniLM-L6-v2', 'Streamlit'],
++      featured: true,
++      icon: MessageSquare,
++    },
+     {
+       title: 'Face Mask Detection Web App',
+       description: 'Real-time face mask detection system for public safety applications using deep learning and edge deployment optimization with TensorFlow Lite.',
+diff --git a/src/sections/Skills.tsx b/src/sections/Skills.tsx
+index 5d90266..863ae71 100644
+--- a/src/sections/Skills.tsx
++++ b/src/sections/Skills.tsx
+@@ -36,6 +36,11 @@ const Skills = () => {
+       icon: BarChart3,
+       skills: ['Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'Plotly', 'Data Visualization', 'EDA', 'Feature Engineering'],
+     },
++    {
++      title: 'LLM & RAG',
++      icon: Database,
++      skills: ['LangChain', 'ChromaDB', 'Groq', 'RAG Pipelines', 'Prompt Engineering', 'Embeddings'],
++    },
+     {
+       title: 'MLOps & Tools',
+       icon: GitBranch,

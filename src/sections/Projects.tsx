@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { ExternalLink, Github, Sparkles, TrendingUp, Activity, Brain } from 'lucide-react';
+import { ExternalLink, Github, Sparkles, TrendingUp, Activity, Brain, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Projects = () => {
@@ -22,6 +22,20 @@ const Projects = () => {
       techStack: ['YOLO11', 'PyTorch', 'Computer Vision', 'Medical Imaging', 'Streamlit'],
       featured: true,
       icon: Brain,
+    },
+    {
+      title: 'Document Q&A with RAG',
+      description: 'Retrieval-augmented generation system for natural-language Q&A over documents, combining semantic search with LLM-powered answer generation.',
+      image: '/project-rag.jpg',
+      demoLink: 'https://ateebkhan96-document-qa-rag-app-1u18bq.streamlit.app/',
+      githubLink: 'https://github.com/ateebkhan96',
+      metrics: [
+        { label: 'Vector DB', value: 'ChromaDB', icon: Activity },
+        { label: 'LLM', value: 'LLaMA 3.3-70B', icon: TrendingUp },
+      ],
+      techStack: ['LangChain', 'ChromaDB', 'Groq', 'all-MiniLM-L6-v2', 'Streamlit'],
+      featured: true,
+      icon: MessageSquare,
     },
     {
       title: 'Face Mask Detection Web App',

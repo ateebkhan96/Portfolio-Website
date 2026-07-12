@@ -15,10 +15,10 @@ const Experience = () => {
       location: 'Remote',
       period: 'July 2025 - Present',
       current: true,
-      description: 'Leading AI/ML education initiatives and creating comprehensive learning materials.',
+      description: 'Leading AI/ML curriculum development and creating comprehensive learning materials.',
       responsibilities: [
-        'Designed and delivered a complete AI/ML fundamentals course',
-        'Produced 60+ educational videos and structured learning modules',
+        'Built a complete AI/ML curriculum spanning 25+ modules and 100-125 lessons',
+        'Designed structured learning tracks across foundational AI and applied ML',
         'Translated core AI/ML concepts into practical, project-driven instruction',
       ],
     },
@@ -34,19 +34,6 @@ const Experience = () => {
         'Handled data preprocessing, model training, evaluation, and deployment',
         'Built deployable ML applications using TensorFlow and Streamlit',
         'Focused on reproducible pipelines and functional inference',
-      ],
-    },
-    {
-      company: 'UpGrad',
-      role: 'Senior Executive Marketing and Tech',
-      location: 'Remote',
-      period: 'September 2023 - December 2023',
-      current: false,
-      description: 'Bridged technical and marketing operations with data-driven approaches.',
-      responsibilities: [
-        'Cleaned, standardized, and structured CRM datasets in MS Excel',
-        'Supported automated marketing campaigns across Mailmodo and Yellow.ai platforms',
-        'Bridged technical and marketing operations',
       ],
     },
     {
