@@ -11,13 +11,13 @@ const Experience = () => {
   const experiences = [
     {
       company: 'DSIAR Tech',
-      role: 'Mentor (Part-Time)',
+      role: 'AI/ML Mentor (Part-Time)',
       location: 'Remote',
-      period: 'July 2025 - Present',
+      period: 'July 2025 – Present',
       current: true,
       description: 'Leading AI/ML curriculum development and creating comprehensive learning materials.',
       responsibilities: [
-        'Built a complete AI/ML curriculum spanning 25+ modules and 100-125 lessons',
+        'Built a complete AI/ML curriculum spanning 25+ modules and 100–125 lessons',
         'Designed structured learning tracks across foundational AI and applied ML',
         'Translated core AI/ML concepts into practical, project-driven instruction',
       ],
@@ -26,12 +26,11 @@ const Experience = () => {
       company: 'Labmentix',
       role: 'AI/ML Intern',
       location: 'Mumbai',
-      period: 'July 2025 - December 2025',
+      period: 'July 2024 – December 2024',
       current: false,
-      description: 'Developed end-to-end machine learning projects with focus on deployment.',
+      description: 'Developed end-to-end machine learning projects with a focus on deployment.',
       responsibilities: [
-        'Developed end-to-end machine learning projects',
-        'Handled data preprocessing, model training, evaluation, and deployment',
+        'Developed end-to-end ML projects covering data preprocessing, training, evaluation, and deployment',
         'Built deployable ML applications using TensorFlow and Streamlit',
         'Focused on reproducible pipelines and functional inference',
       ],
@@ -40,137 +39,111 @@ const Experience = () => {
       company: 'Feynn Labs',
       role: 'Machine Learning Intern',
       location: 'Remote',
-      period: 'September 2022 - November 2022',
+      period: 'September 2022 – November 2022',
       current: false,
       description: 'Developed ML-driven models for EV market analysis and AI product prototypes.',
       responsibilities: [
-        'Developed ML-driven models for EV market analysis',
-        'Applied segmentation and trend analysis techniques',
-        'Supported AI product prototypes',
-        'Gained hands-on experience in data preprocessing, model training, and evaluation',
+        'Developed ML models for EV market segmentation and trend analysis',
+        'Applied customer segmentation and time-series forecasting techniques',
+        'Gained hands-on experience in the full ML pipeline: preprocessing, training, and evaluation',
       ],
     },
   ];
 
   return (
-    <section id="experience" className="relative py-24 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-[#0a0a0f]">
-        <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[150px] -translate-y-1/2" />
-        <div className="absolute top-1/3 right-0 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[120px]" />
-      </div>
-
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+    <section id="experience" className="relative py-24 bg-slate-50">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-2 rounded-full glass text-purple-400 text-sm mb-4">
-            Experience
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-white">Professional </span>
-            <span className="gradient-text">Journey</span>
+          <span className="pill mb-4 inline-flex">Experience</span>
+          <h2 className="font-display text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4">
+            Professional <span className="gradient-text">Journey</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            A track record of delivering impactful ML solutions across diverse industries and roles.
+          <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+            A track record of delivering ML solutions across education, medical imaging, and analytics.
           </p>
         </motion.div>
 
         {/* Timeline */}
         <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 via-blue-500 to-cyan-500 md:-translate-x-1/2" />
+          <div className="absolute left-5 top-0 bottom-0 w-px bg-slate-200" />
 
-          {/* Experience Items */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                className={`relative flex flex-col md:flex-row ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                } items-start md:items-center gap-4 md:gap-8`}
+                transition={{ duration: 0.5, delay: 0.15 + index * 0.1 }}
+                className="relative flex gap-6"
               >
-                {/* Timeline Dot */}
-                <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full gradient-bg border-4 border-[#0a0a0f] md:-translate-x-1/2 z-10">
-                  {exp.current && (
-                    <div className="absolute inset-0 rounded-full gradient-bg animate-ping" />
-                  )}
+                {/* Timeline dot */}
+                <div className="relative shrink-0 mt-6">
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 z-10 relative ${
+                    exp.current
+                      ? 'bg-indigo-600 border-indigo-600 text-white'
+                      : 'bg-white border-slate-300 text-slate-400'
+                  }`}>
+                    {exp.current && <span className="w-2.5 h-2.5 rounded-full bg-white" />}
+                    {!exp.current && <span className="w-2.5 h-2.5 rounded-full bg-slate-300" />}
+                    {exp.current && (
+                      <span className="absolute inset-0 rounded-full bg-indigo-400/30 animate-ping" />
+                    )}
+                  </div>
                 </div>
 
-                {/* Content Card */}
-                <div className={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${
-                  index % 2 === 0 ? 'md:mr-auto' : 'md:ml-auto'
-                }`}>
+                {/* Card */}
+                <div className="flex-1 mb-2">
                   <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    className={`glass rounded-2xl p-6 cursor-pointer transition-all ${
-                      exp.current ? 'border-purple-500/50' : ''
-                    }`}
+                    className="card p-5 cursor-pointer hover:border-indigo-200 hover:shadow-md transition-all"
                     onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
                   >
-                    {/* Header */}
-                    <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-start justify-between mb-2">
                       <div>
-                        <h3 className="text-lg font-semibold text-white">{exp.role}</h3>
-                        <p className="text-purple-400">{exp.company}</p>
+                        <h3 className="font-semibold font-display text-slate-900">{exp.role}</h3>
+                        <p className="text-indigo-600 text-sm font-medium">{exp.company}</p>
                       </div>
                       {exp.current && (
-                        <span className="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-medium">
+                        <span className="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-600 text-xs font-semibold border border-emerald-200">
                           Current
                         </span>
                       )}
                     </div>
 
-                    {/* Meta */}
-                    <div className="flex flex-wrap gap-3 text-sm text-gray-500 mb-3">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        {exp.period}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <MapPin className="w-4 h-4" />
-                        {exp.location}
-                      </span>
+                    <div className="flex flex-wrap gap-3 text-xs text-slate-400 mb-3">
+                      <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />{exp.period}</span>
+                      <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" />{exp.location}</span>
                     </div>
 
-                    <p className="text-gray-400 text-sm mb-3">{exp.description}</p>
+                    <p className="text-slate-500 text-sm mb-3">{exp.description}</p>
 
-                    {/* Expand Button */}
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-purple-400">
-                        {expandedIndex === index ? 'Hide Details' : 'View Details'}
+                      <span className="text-xs text-indigo-500 font-medium">
+                        {expandedIndex === index ? 'Hide details' : 'View details'}
                       </span>
-                      {expandedIndex === index ? (
-                        <ChevronUp className="w-5 h-5 text-purple-400" />
-                      ) : (
-                        <ChevronDown className="w-5 h-5 text-purple-400" />
-                      )}
+                      {expandedIndex === index
+                        ? <ChevronUp className="w-4 h-4 text-indigo-400" />
+                        : <ChevronDown className="w-4 h-4 text-indigo-400" />
+                      }
                     </div>
 
-                    {/* Expanded Content */}
                     <motion.div
                       initial={false}
-                      animate={{
-                        height: expandedIndex === index ? 'auto' : 0,
-                        opacity: expandedIndex === index ? 1 : 0,
-                      }}
-                      transition={{ duration: 0.3 }}
+                      animate={{ height: expandedIndex === index ? 'auto' : 0, opacity: expandedIndex === index ? 1 : 0 }}
+                      transition={{ duration: 0.25 }}
                       className="overflow-hidden"
                     >
-                      <div className="pt-4 mt-4 border-t border-white/10">
-                        <h4 className="text-sm font-medium text-white mb-3">Key Responsibilities:</h4>
+                      <div className="pt-4 mt-4 border-t border-slate-100">
+                        <h4 className="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-3">Responsibilities</h4>
                         <ul className="space-y-2">
-                          {exp.responsibilities.map((resp, respIndex) => (
-                            <li key={respIndex} className="flex items-start gap-2 text-sm text-gray-400">
-                              <span className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 shrink-0" />
+                          {exp.responsibilities.map((resp, i) => (
+                            <li key={i} className="flex items-start gap-2 text-sm text-slate-500">
+                              <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
                               {resp}
                             </li>
                           ))}
