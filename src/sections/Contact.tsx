@@ -67,7 +67,7 @@ const Contact = () => {
               </div>
               <div>
                 <p className="text-[#444] text-xs uppercase tracking-wide mb-0.5">Location</p>
-                <p className="text-white text-sm font-medium">Akola, Maharashtra · Open to relocation & remote</p>
+                <p className="text-white text-sm font-medium">Maharashtra, India</p>
               </div>
             </div>
 
@@ -95,7 +95,7 @@ const Contact = () => {
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                 <span className="text-green-400 font-semibold text-sm">Available for Work</span>
               </div>
-              <p className="text-[#666] text-sm">Open to full-time roles in Pune, Bengaluru, Hyderabad, Chennai, Mumbai, or remote globally.</p>
+              <p className="text-[#666] text-sm">Open to full-time ML/AI roles across India and remote globally.</p>
             </div>
           </motion.div>
 
@@ -110,7 +110,7 @@ const Contact = () => {
               <div className="text-center py-12">
                 <CheckCircle2 className="w-12 h-12 text-green-500 mx-auto mb-4" />
                 <h4 className="font-display font-bold text-white text-lg mb-2">Message Sent!</h4>
-                <p className="text-[#666] text-sm">Thanks for reaching out — I'll get back to you soon.</p>
+                <p className="text-[#666] text-sm">Thanks for reaching out I'll get back to you soon.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">

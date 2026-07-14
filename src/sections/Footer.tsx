@@ -11,7 +11,7 @@ const Footer = () => {
             <h3 className="font-display text-lg font-bold gradient-text mb-3">Ateeb Ahmed Khan</h3>
             <p className="text-[#555] text-sm leading-relaxed max-w-sm mb-5">
               Machine Learning Engineer specialising in computer vision, LLM/RAG systems, and production ML.
-              Open to roles in Pune, Bengaluru, Hyderabad, Chennai, Mumbai, or remote globally.
+              Open to full-time ML/AI roles across India and remote globally.
             </p>
             <div className="flex gap-2">
               {[

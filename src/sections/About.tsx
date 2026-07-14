@@ -44,11 +44,11 @@ const About = () => {
             <p className="text-[#888] leading-relaxed mb-4">
               Machine Learning Engineer specialising in computer vision and LLM/RAG systems.
               Proficient in designing, building, and deploying scalable ML models using Python,
-              TensorFlow, PyTorch, and LangChain — with a track record of shipping production-ready applications.
+              TensorFlow, PyTorch, and LangChain, with a track record of shipping production-ready applications.
             </p>
 
             <p className="text-[#666] leading-relaxed mb-6">
-              My MSc thesis — <span className="text-[#999] italic">"Brain Tumor Detection Using Vision Transformers and XAI"</span> —
+              My MSc thesis, <span className="text-[#999] italic">"Brain Tumor Detection Using Vision Transformers and XAI"</span>,
               compared ResNet-50 (Grad-CAM) and ViT (Attention Rollout) on 7,200 MRI images, achieving ~99% accuracy.
               The study found statistically equivalent performance but superior spatial faithfulness in CNN-based explanations.
             </p>
@@ -78,14 +78,12 @@ const About = () => {
             <div className="space-y-6">
               {/* MSc */}
               <div className="border-l-2 border-green-500/40 pl-4">
-                <div className="flex items-start justify-between gap-2 mb-1">
-                  <h5 className="text-white font-semibold text-sm">MSc Computer Science</h5>
-                  <span className="text-xs text-green-400 border border-green-500/20 bg-green-500/5 px-2 py-0.5 rounded-full shrink-0">Graduated</span>
-                </div>
+                <h5 className="text-white font-semibold text-sm mb-1">MSc Computer Science</h5>
                 <p className="text-green-500 text-sm">IU International University of Applied Sciences, Berlin</p>
-                <p className="text-[#555] text-xs mt-1">07/2023 – 07/2026 · GPA 1.8 <span className="text-[#444]">(German scale: 1.0 = highest, 5.0 = fail)</span></p>
-
-                {/* Thesis */}
+                <p className="text-[#555] text-xs mt-1">
+                  07/2023 – 07/2026 · GPA 1.8{' '}
+                  <span className="text-[#444]">(German scale: 1.0 = highest, 5.0 = fail)</span>
+                </p>
                 <div className="mt-3 p-3 rounded-lg bg-[#161616] border border-[#222]">
                   <p className="text-[#555] text-xs uppercase tracking-wide font-semibold mb-1">Thesis</p>
                   <p className="text-[#999] text-xs italic leading-relaxed">
@@ -96,7 +94,7 @@ const About = () => {
 
               {/* B.Tech */}
               <div className="border-l-2 border-[#2a2a2a] pl-4">
-                <h5 className="text-white font-semibold text-sm mb-0.5">B.Tech in Robotics & Automation</h5>
+                <h5 className="text-white font-semibold text-sm mb-0.5">B.Tech in Robotics and Automation</h5>
                 <p className="text-green-500 text-sm">MIT World Peace University, Pune</p>
                 <p className="text-[#555] text-xs mt-1">2018 – 2022 · GPA 8.99/10</p>
               </div>
