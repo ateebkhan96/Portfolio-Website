@@ -1,181 +1,159 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { ExternalLink, Github, TrendingUp, Activity, Brain, MessageSquare } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ExternalLink, Github } from 'lucide-react';
+
+const projects = [
+  {
+    title: 'Brain Tumor Detection using YOLO11',
+    description: 'State-of-the-art MRI tumor detection using YOLO11 with real-time inference. MSc thesis extended this with a Grad-CAM vs Attention Rollout explainability study (~99% accuracy).',
+    image: '/project-brain-tumor.jpg',
+    tags: ['Python', 'YOLO11', 'OpenCV', 'PyTorch', 'Streamlit'],
+    metrics: '95.1% mAP@0.5',
+    demoLink: 'https://brain-tumor-det.streamlit.app/',
+    githubLink: 'https://github.com/ateebkhan96/Brain-Tumor-Detection-using-YOLO11',
+  },
+  {
+    title: 'Document Q&A with RAG',
+    description: 'Production RAG pipeline for natural-language Q&A over uploaded documents. Combines ChromaDB vector search with LLaMA 3.3-70B via Groq for fast, accurate answers.',
+    image: '/project-pricing.jpg',
+    tags: ['LangChain', 'ChromaDB', 'Groq', 'LLaMA 3.3-70B', 'Streamlit'],
+    metrics: 'Fully deployed',
+    demoLink: 'https://ateebkhan96-document-qa-rag-app-1u18bq.streamlit.app/',
+    githubLink: 'https://github.com/ateebkhan96',
+  },
+  {
+    title: 'Face Mask Detection Web App',
+    description: 'Real-time face mask detection with DenseNet201 optimised via TensorFlow Lite for edge deployment. MediaPipe face detection pipeline running at 30 FPS.',
+    image: '/project-face-mask.jpg',
+    tags: ['DenseNet201', 'TF Lite', 'MediaPipe', 'OpenCV', 'Streamlit'],
+    metrics: '98.99% accuracy',
+    demoLink: 'https://face-mask-detection-system.streamlit.app/',
+    githubLink: 'https://github.com/ateebkhan96/face-mask-detection-system',
+  },
+];
 
 const Projects = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-
-  const projects = [
-    {
-      title: 'Brain Tumor Detection using YOLO11',
-      description: 'State-of-the-art MRI tumor detection system using YOLO11 with real-time inference and a deployable Streamlit app. My MSc thesis extended this with a ResNet-50 vs ViT explainability study (Grad-CAM vs Attention Rollout).',
-      demoLink: 'https://brain-tumor-det.streamlit.app/',
-      githubLink: 'https://github.com/ateebkhan96/Brain-Tumor-Detection-using-YOLO11',
-      metrics: [
-        { label: 'mAP@0.5', value: '95.1%', icon: TrendingUp },
-        { label: 'Precision', value: '92.7%', icon: Activity },
-      ],
-      techStack: ['YOLO11', 'PyTorch', 'OpenCV', 'Medical Imaging', 'Streamlit'],
-      featured: true,
-      icon: Brain,
-      accent: 'from-indigo-500 to-violet-500',
-    },
-    {
-      title: 'Document Q&A with RAG',
-      description: 'Retrieval-augmented generation system for natural-language Q&A over uploaded documents. Combines semantic chunking, vector search, and LLM-powered answer generation in a fully deployed Streamlit app.',
-      demoLink: 'https://ateebkhan96-document-qa-rag-app-1u18bq.streamlit.app/',
-      githubLink: 'https://github.com/ateebkhan96',
-      metrics: [
-        { label: 'Vector DB', value: 'ChromaDB', icon: Activity },
-        { label: 'LLM', value: 'LLaMA 3.3-70B', icon: TrendingUp },
-      ],
-      techStack: ['LangChain', 'ChromaDB', 'Groq', 'all-MiniLM-L6-v2', 'Streamlit'],
-      featured: true,
-      icon: MessageSquare,
-      accent: 'from-violet-500 to-blue-500',
-    },
-    {
-      title: 'Face Mask Detection Web App',
-      description: 'Real-time face mask detection for public safety using DenseNet201 optimised with TensorFlow Lite for edge deployment. Achieves 30 FPS with MediaPipe face detection.',
-      demoLink: 'https://face-mask-detection-system.streamlit.app/',
-      githubLink: 'https://github.com/ateebkhan96/face-mask-detection-system',
-      metrics: [
-        { label: 'Accuracy', value: '98.99%', icon: TrendingUp },
-        { label: 'Speed', value: '30 FPS', icon: Activity },
-      ],
-      techStack: ['DenseNet201', 'TensorFlow Lite', 'MediaPipe', 'OpenCV', 'Streamlit'],
-      featured: true,
-      icon: Activity,
-      accent: 'from-blue-500 to-cyan-500',
-    },
-    {
-      title: 'Real-Time Hand Tracking',
-      description: 'Real-time hand landmark tracking using MediaPipe with 21-point skeletal detection from a live webcam feed. Foundation for gesture-based HCI applications.',
-      demoLink: 'https://github.com/ateebkhan96/HandTracking',
-      githubLink: 'https://github.com/ateebkhan96/HandTracking',
-      metrics: [
-        { label: 'Speed', value: '30+ FPS', icon: Activity },
-        { label: 'Landmarks', value: '21 / hand', icon: TrendingUp },
-      ],
-      techStack: ['MediaPipe', 'OpenCV', 'Python', 'Real-Time CV'],
-      featured: false,
-      icon: Activity,
-      accent: 'from-slate-400 to-slate-500',
-    },
-  ];
-
-  const featured = projects.filter(p => p.featured);
-  const others = projects.filter(p => !p.featured);
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="projects" className="relative py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="py-24 bg-[#0a0a0a]">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.5 }}
+          className="flex items-end justify-between mb-10"
         >
-          <span className="pill mb-4 inline-flex">Projects</span>
-          <h2 className="font-display text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4">
-            Featured <span className="gradient-text">Work</span>
-          </h2>
-          <p className="text-slate-500 text-lg max-w-2xl mx-auto">
-            Production-deployed ML applications — each with a live demo you can try now.
-          </p>
+          <div>
+            <span className="pill mb-4 inline-flex">Projects</span>
+            <h2 className="font-display text-4xl sm:text-5xl font-extrabold text-white">
+              Featured <span className="gradient-text">Projects</span>
+            </h2>
+          </div>
+          <a
+            href="https://github.com/ateebkhan96"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:flex items-center gap-1.5 text-green-500 hover:text-green-400 text-sm font-medium transition-colors"
+          >
+            View all projects <ExternalLink className="w-3.5 h-3.5" />
+          </a>
         </motion.div>
 
-        {/* Featured projects */}
-        <div className="grid md:grid-cols-3 gap-6 mb-10">
-          {featured.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 24 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
-              className="card p-6 flex flex-col hover:shadow-lg hover:border-indigo-200 transition-all group"
-            >
-              {/* Icon header */}
-              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${project.accent} flex items-center justify-center mb-4 shadow-sm`}>
-                <project.icon className="w-6 h-6 text-white" />
-              </div>
-
-              <h3 className="font-display font-bold text-slate-900 text-lg mb-2 leading-snug">{project.title}</h3>
-              <p className="text-slate-500 text-sm mb-4 leading-relaxed flex-1">{project.description}</p>
-
-              {/* Metrics */}
-              <div className="grid grid-cols-2 gap-3 mb-4">
-                {project.metrics.map((m) => (
-                  <div key={m.label} className="bg-slate-50 border border-slate-100 rounded-lg p-2.5 text-center">
-                    <p className="font-bold text-slate-900 text-sm font-display">{m.value}</p>
-                    <p className="text-slate-400 text-xs mt-0.5">{m.label}</p>
+        {/* Project grid + about sidebar */}
+        <div className="grid lg:grid-cols-3 gap-5">
+          {/* Projects 2×3 area */}
+          <div className="lg:col-span-2 grid sm:grid-cols-1 gap-5">
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
+                className="card-dark overflow-hidden group hover:border-[#2a2a2a] transition-all"
+              >
+                <div className="flex flex-col sm:flex-row">
+                  {/* Image */}
+                  <div className="sm:w-48 h-40 sm:h-auto shrink-0 overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      style={{ filter: 'brightness(0.8)' }}
+                    />
                   </div>
-                ))}
-              </div>
 
-              {/* Tech tags */}
-              <div className="flex flex-wrap gap-1.5 mb-5">
-                {project.techStack.map((t) => (
-                  <span key={t} className="px-2 py-1 text-xs rounded-md bg-indigo-50 text-indigo-600 border border-indigo-100">
-                    {t}
-                  </span>
-                ))}
-              </div>
+                  {/* Content */}
+                  <div className="flex-1 p-5">
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <h3 className="font-display font-bold text-white text-base leading-snug">{project.title}</h3>
+                      <span className="shrink-0 text-xs text-green-500 border border-green-500/30 bg-green-500/5 px-2 py-0.5 rounded-full font-medium">
+                        {project.metrics}
+                      </span>
+                    </div>
 
-              {/* Buttons */}
-              <div className="flex gap-2 mt-auto">
-                <Button asChild size="sm" className="flex-1 gradient-bg text-white hover:opacity-90 transition-all rounded-lg text-xs">
-                  <a href={project.demoLink} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="w-3.5 h-3.5 mr-1.5" /> Live Demo
-                  </a>
-                </Button>
-                <Button asChild size="sm" variant="outline" className="flex-1 border-slate-200 text-slate-600 hover:bg-slate-50 rounded-lg text-xs">
-                  <a href={project.githubLink} target="_blank" rel="noopener noreferrer">
-                    <Github className="w-3.5 h-3.5 mr-1.5" /> Code
-                  </a>
-                </Button>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                    <p className="text-[#666] text-sm leading-relaxed mb-3">{project.description}</p>
 
-        {/* Other projects */}
-        {others.map((project, index) => (
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {project.tags.map((tag) => (
+                        <span key={tag} className="px-2 py-0.5 rounded text-[#666] text-xs bg-[#161616] border border-[#222]">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="flex gap-3">
+                      <a href={project.demoLink} target="_blank" rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-xs text-white hover:text-green-400 transition-colors">
+                        <ExternalLink className="w-3.5 h-3.5" /> Live Demo
+                      </a>
+                      <a href={project.githubLink} target="_blank" rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-xs text-[#666] hover:text-white transition-colors">
+                        <Github className="w-3.5 h-3.5" /> Code
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* About me sidebar */}
           <motion.div
-            key={project.title}
-            initial={{ opacity: 0, y: 16 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-            className="card p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 hover:border-slate-300 transition-all"
+            initial={{ opacity: 0, x: 20 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="card-dark p-6 h-fit lg:sticky lg:top-24"
           >
-            <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${project.accent} flex items-center justify-center shrink-0`}>
-              <project.icon className="w-5 h-5 text-white" />
+            <h3 className="font-display font-bold text-white text-lg mb-3">About Me</h3>
+            <p className="text-[#666] text-sm leading-relaxed mb-5">
+              I'm a Machine Learning Engineer with a strong focus on Computer Vision and LLM/RAG systems.
+              I build things that work — clean pipelines, deployed apps, reproducible results.
+            </p>
+            <div className="space-y-3 mb-6">
+              {[
+                { icon: '🎓', text: 'MSc Computer Science — IU Germany (1.8 GPA)' },
+                { icon: '🤖', text: 'AI/ML Mentor @ DSIAR Tech' },
+                { icon: '⚡', text: 'Ex-AI/ML Intern @ Labmentix' },
+                { icon: '🛠️', text: 'YOLO11 · LangChain · PyTorch · RAG' },
+              ].map((item) => (
+                <div key={item.text} className="flex items-start gap-3 text-sm">
+                  <span className="text-base">{item.icon}</span>
+                  <span className="text-[#888]">{item.text}</span>
+                </div>
+              ))}
             </div>
-            <div className="flex-1 min-w-0">
-              <h3 className="font-semibold font-display text-slate-900 text-sm">{project.title}</h3>
-              <p className="text-slate-400 text-xs mt-0.5 line-clamp-2">{project.description}</p>
-              <div className="flex flex-wrap gap-1 mt-2">
-                {project.techStack.map((t) => (
-                  <span key={t} className="px-2 py-0.5 text-xs rounded bg-slate-100 text-slate-500">{t}</span>
-                ))}
-              </div>
-            </div>
-            <div className="flex gap-2 shrink-0">
-              <a href={project.demoLink} target="_blank" rel="noopener noreferrer"
-                className="p-2 rounded-lg border border-slate-200 text-slate-500 hover:text-indigo-600 hover:border-indigo-200 transition-all">
-                <ExternalLink className="w-4 h-4" />
-              </a>
-              <a href={project.githubLink} target="_blank" rel="noopener noreferrer"
-                className="p-2 rounded-lg border border-slate-200 text-slate-500 hover:text-indigo-600 hover:border-indigo-200 transition-all">
-                <Github className="w-4 h-4" />
-              </a>
-            </div>
+            <button
+              onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+              className="w-full text-center py-2.5 rounded-lg border border-[#2a2a2a] text-white text-sm font-medium hover:border-green-500/50 hover:text-green-400 hover:bg-green-500/5 transition-all"
+            >
+              More About Me →
+            </button>
           </motion.div>
-        ))}
+        </div>
       </div>
     </section>
   );

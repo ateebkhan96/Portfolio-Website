@@ -2,13 +2,12 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { MapPin, Send, Github, Linkedin, CheckCircle2, Loader2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 
 const Contact = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState('');
@@ -17,26 +16,19 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.website) return;
-    const lastSubmit = localStorage.getItem('lastFormSubmit');
-    if (lastSubmit && Date.now() - parseInt(lastSubmit) < 60000) {
-      setSubmitError('Please wait a moment before sending another message.');
-      setTimeout(() => setSubmitError(''), 5000);
-      return;
-    }
     setIsSubmitting(true);
     setSubmitError('');
     try {
-      const response = await fetch('https://formspree.io/f/xojnalea', {
+      const res = await fetch('https://formspree.io/f/xojnalea', {
         method: 'POST',
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: formData.name, email: formData.email, subject: formData.subject, message: formData.message }),
       });
-      if (response.ok) {
+      if (res.ok) {
         setIsSubmitted(true);
         setFormData({ name: '', email: '', subject: '', message: '', website: '' });
-        localStorage.setItem('lastFormSubmit', Date.now().toString());
         setTimeout(() => setIsSubmitted(false), 5000);
-      } else throw new Error('Failed');
+      } else throw new Error();
     } catch {
       setSubmitError('Something went wrong. Please try again later.');
     } finally {
@@ -45,159 +37,113 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="relative py-24 bg-slate-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-24 bg-[#0d0d0d]">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.5 }}
+          className="mb-12"
         >
           <span className="pill mb-4 inline-flex">Get In Touch</span>
-          <h2 className="font-display text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4">
+          <h2 className="font-display text-4xl sm:text-5xl font-extrabold text-white">
             Let's <span className="gradient-text">Connect</span>
           </h2>
-          <p className="text-slate-500 text-lg max-w-2xl mx-auto">
-            Open to opportunities, collaborations, and conversations about AI/ML.
-          </p>
+          <p className="text-[#666] mt-3 max-w-xl">Open to ML/AI roles, collaborations, and interesting conversations.</p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-10">
+        <div className="grid lg:grid-cols-2 gap-8">
           {/* Left */}
           <motion.div
-            initial={{ opacity: 0, x: -24 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-5"
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="space-y-4"
           >
-            <div className="card p-5 flex items-center gap-4">
-              <div className="w-11 h-11 rounded-xl gradient-bg flex items-center justify-center shrink-0">
-                <MapPin className="w-5 h-5 text-white" />
+            <div className="card-dark p-5 flex items-center gap-4">
+              <div className="w-10 h-10 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center">
+                <MapPin className="w-4 h-4 text-green-500" />
               </div>
               <div>
-                <p className="text-xs text-slate-400 uppercase tracking-wide font-medium">Location</p>
-                <p className="text-slate-800 font-medium text-sm">Akola, Maharashtra · Open to relocation & remote</p>
+                <p className="text-[#444] text-xs uppercase tracking-wide mb-0.5">Location</p>
+                <p className="text-white text-sm font-medium">Akola, Maharashtra · Open to relocation & remote</p>
               </div>
             </div>
 
-            <div className="card p-5">
-              <h3 className="font-semibold font-display text-slate-900 text-sm mb-3">Find me on</h3>
+            <div className="card-dark p-5">
+              <p className="text-[#444] text-xs uppercase tracking-wide mb-3">Find me on</p>
               <div className="flex gap-3">
                 {[
-                  { href: 'https://linkedin.com/in/ateebk/', label: 'LinkedIn', icon: <Linkedin className="w-5 h-5" /> },
-                  { href: 'https://github.com/ateebkhan96', label: 'GitHub', icon: <Github className="w-5 h-5" /> },
+                  { href: 'https://linkedin.com/in/ateebk/', label: 'LinkedIn', icon: <Linkedin className="w-4 h-4" /> },
+                  { href: 'https://github.com/ateebkhan96', label: 'GitHub', icon: <Github className="w-4 h-4" /> },
                   {
-                    href: 'https://x.com/theAteebKhan',
-                    label: 'X',
-                    icon: (
-                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                      </svg>
-                    ),
+                    href: 'https://x.com/theAteebKhan', label: 'X',
+                    icon: <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
                   },
                 ].map((s) => (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={s.label}
-                    className="w-11 h-11 rounded-xl border border-slate-200 flex items-center justify-center text-slate-500 hover:text-indigo-600 hover:border-indigo-300 hover:bg-indigo-50 transition-all"
-                  >
+                  <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" title={s.label}
+                    className="w-10 h-10 rounded-lg border border-[#222] flex items-center justify-center text-[#555] hover:text-green-400 hover:border-green-500/30 transition-all">
                     {s.icon}
                   </a>
                 ))}
               </div>
             </div>
 
-            <div className="card p-5">
+            <div className="card-dark p-5">
               <div className="flex items-center gap-2 mb-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-emerald-600 font-semibold text-sm">Available for Work</span>
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                <span className="text-green-400 font-semibold text-sm">Available for Work</span>
               </div>
-              <p className="text-slate-500 text-sm">
-                Open to full-time ML/AI roles (Pune, Bengaluru, Hyderabad, Chennai, Mumbai) and remote positions globally.
-              </p>
+              <p className="text-[#666] text-sm">Open to full-time roles in Pune, Bengaluru, Hyderabad, Chennai, Mumbai, or remote globally.</p>
             </div>
           </motion.div>
 
-          {/* Right — form */}
+          {/* Form */}
           <motion.div
-            initial={{ opacity: 0, x: 24 }}
+            initial={{ opacity: 0, x: 20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="card-dark p-6"
           >
-            <div className="card p-7">
-              <h3 className="font-semibold font-display text-slate-900 mb-5">Send a Message</h3>
-
-              {isSubmitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-12"
-                >
-                  <CheckCircle2 className="w-14 h-14 text-emerald-500 mx-auto mb-4" />
-                  <h4 className="text-lg font-bold font-display text-slate-900 mb-2">Message Sent!</h4>
-                  <p className="text-slate-500 text-sm">Thanks for reaching out — I'll get back to you soon.</p>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="hidden" aria-hidden="true">
-                    <input type="text" name="website" value={formData.website}
-                      onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                      tabIndex={-1} autoComplete="off" />
-                  </div>
-
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-medium text-slate-600 mb-1.5">Name *</label>
-                      <Input type="text" placeholder="Your name" value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        required minLength={2} maxLength={100}
-                        className="border-slate-200 text-slate-900 placeholder:text-slate-300 focus:border-indigo-400 focus:ring-indigo-100" />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-medium text-slate-600 mb-1.5">Email *</label>
-                      <Input type="email" placeholder="your@email.com" value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        required maxLength={100}
-                        className="border-slate-200 text-slate-900 placeholder:text-slate-300 focus:border-indigo-400 focus:ring-indigo-100" />
-                    </div>
-                  </div>
-
+            {isSubmitted ? (
+              <div className="text-center py-12">
+                <CheckCircle2 className="w-12 h-12 text-green-500 mx-auto mb-4" />
+                <h4 className="font-display font-bold text-white text-lg mb-2">Message Sent!</h4>
+                <p className="text-[#666] text-sm">Thanks for reaching out — I'll get back to you soon.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="hidden"><input type="text" name="website" value={formData.website} onChange={(e) => setFormData({ ...formData, website: e.target.value })} tabIndex={-1} /></div>
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-medium text-slate-600 mb-1.5">Subject *</label>
-                    <Input type="text" placeholder="What's this about?" value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      required minLength={5} maxLength={200}
-                      className="border-slate-200 text-slate-900 placeholder:text-slate-300 focus:border-indigo-400 focus:ring-indigo-100" />
+                    <label className="block text-xs text-[#555] mb-1.5">Name *</label>
+                    <Input type="text" placeholder="Your name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} required minLength={2}
+                      className="bg-[#161616] border-[#222] text-white placeholder:text-[#333] focus:border-green-500/40 focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0" />
                   </div>
-
                   <div>
-                    <label className="block text-xs font-medium text-slate-600 mb-1.5">Message *</label>
-                    <Textarea placeholder="Tell me about your project or opportunity..." value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      required minLength={20} maxLength={2000} rows={5}
-                      className="border-slate-200 text-slate-900 placeholder:text-slate-300 focus:border-indigo-400 focus:ring-indigo-100 resize-none" />
-                    <p className="text-xs text-slate-400 mt-1">Minimum 20 characters</p>
+                    <label className="block text-xs text-[#555] mb-1.5">Email *</label>
+                    <Input type="email" placeholder="your@email.com" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} required
+                      className="bg-[#161616] border-[#222] text-white placeholder:text-[#333] focus:border-green-500/40 focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0" />
                   </div>
-
-                  {submitError && (
-                    <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm">{submitError}</div>
-                  )}
-
-                  <Button type="submit" disabled={isSubmitting}
-                    className="w-full gradient-bg text-white py-5 rounded-xl hover:opacity-90 transition-all disabled:opacity-50 shadow-sm shadow-indigo-200">
-                    {isSubmitting ? (
-                      <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Sending...</>
-                    ) : (
-                      <><Send className="w-4 h-4 mr-2" />Send Message</>
-                    )}
-                  </Button>
-                </form>
-              )}
-            </div>
+                </div>
+                <div>
+                  <label className="block text-xs text-[#555] mb-1.5">Subject *</label>
+                  <Input type="text" placeholder="What's this about?" value={formData.subject} onChange={(e) => setFormData({ ...formData, subject: e.target.value })} required
+                    className="bg-[#161616] border-[#222] text-white placeholder:text-[#333] focus:border-green-500/40 focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0" />
+                </div>
+                <div>
+                  <label className="block text-xs text-[#555] mb-1.5">Message *</label>
+                  <Textarea placeholder="Tell me about your project or opportunity..." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} required minLength={20} rows={5}
+                    className="bg-[#161616] border-[#222] text-white placeholder:text-[#333] focus:border-green-500/40 focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 resize-none" />
+                </div>
+                {submitError && <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">{submitError}</div>}
+                <button type="submit" disabled={isSubmitting}
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-green-500 text-black font-semibold text-sm hover:bg-green-400 transition-all disabled:opacity-50">
+                  {isSubmitting ? <><Loader2 className="w-4 h-4 animate-spin" /> Sending...</> : <><Send className="w-4 h-4" /> Send Message</>}
+                </button>
+              </form>
+            )}
           </motion.div>
         </div>
       </div>

@@ -1,77 +1,93 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Github, Linkedin, Menu, X } from 'lucide-react';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => setIsScrolled(window.scrollY > 40);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navItems = [
-    { label: 'Home', href: '#hero' },
-    { label: 'About', href: '#about' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Certifications', href: '#certifications' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Home', href: 'hero' },
+    { label: 'Projects', href: 'projects' },
+    { label: 'Experience', href: 'experience' },
+    { label: 'Skills', href: 'skills' },
+    { label: 'About', href: 'about' },
+    { label: 'Contact', href: 'contact' },
   ];
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) element.scrollIntoView({ behavior: 'smooth' });
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setActiveSection(id);
     setIsMobileMenuOpen(false);
   };
 
   return (
     <>
       <motion.nav
-        initial={{ y: -100 }}
+        initial={{ y: -80 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm'
-            : 'bg-transparent'
+          isScrolled ? 'border-b border-[#1e1e1e] bg-[#0a0a0a]/95 backdrop-blur-sm' : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <motion.a
-              href="#hero"
-              onClick={(e) => { e.preventDefault(); scrollToSection('#hero'); }}
-              className="text-lg font-bold font-display gradient-text"
-              whileHover={{ scale: 1.03 }}
-            >
+            {/* Logo */}
+            <button onClick={() => scrollTo('hero')} className="font-display text-base font-bold text-white hover:text-green-400 transition-colors">
               Ateeb Khan
-            </motion.a>
+            </button>
 
+            {/* Desktop nav */}
             <div className="hidden md:flex items-center gap-1">
               {navItems.map((item) => (
-                <motion.a
+                <button
                   key={item.label}
-                  href={item.href}
-                  onClick={(e) => { e.preventDefault(); scrollToSection(item.href); }}
-                  className="px-3 py-2 text-sm text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 transition-colors rounded-lg"
-                  whileHover={{ scale: 1.02 }}
+                  onClick={() => scrollTo(item.href)}
+                  className={`relative px-4 py-2 text-sm transition-colors ${
+                    activeSection === item.href ? 'text-white' : 'text-[#888] hover:text-white'
+                  }`}
                 >
                   {item.label}
-                </motion.a>
+                  {activeSection === item.href && (
+                    <motion.div layoutId="nav-underline" className="absolute bottom-0 left-4 right-4 h-px bg-green-500" />
+                  )}
+                </button>
               ))}
             </div>
 
-            <motion.button
-              whileTap={{ scale: 0.95 }}
+            {/* Right side */}
+            <div className="hidden md:flex items-center gap-3">
+              <a href="https://github.com/ateebkhan96" target="_blank" rel="noopener noreferrer"
+                className="w-8 h-8 flex items-center justify-center text-[#666] hover:text-white transition-colors">
+                <Github className="w-4 h-4" />
+              </a>
+              <a href="https://linkedin.com/in/ateebk/" target="_blank" rel="noopener noreferrer"
+                className="w-8 h-8 flex items-center justify-center text-[#666] hover:text-white transition-colors">
+                <Linkedin className="w-4 h-4" />
+              </a>
+              <button
+                onClick={() => scrollTo('contact')}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-black text-sm font-semibold hover:bg-green-400 transition-all"
+              >
+                Let's Connect →
+              </button>
+            </div>
+
+            {/* Mobile menu button */}
+            <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden w-10 h-10 rounded-lg border border-slate-200 flex items-center justify-center text-slate-600 hover:text-indigo-600 hover:border-indigo-200 transition-all"
+              className="md:hidden w-9 h-9 flex items-center justify-center text-[#888] border border-[#222] rounded-lg hover:text-white transition-colors"
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </motion.button>
+              {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            </button>
           </div>
         </div>
       </motion.nav>
@@ -79,35 +95,30 @@ const Navigation = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 md:hidden"
+            exit={{ opacity: 0, y: -10 }}
+            className="fixed top-16 left-4 right-4 z-40 card-dark p-5 md:hidden"
           >
-            <div className="absolute inset-0 bg-slate-900/20 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)} />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.97 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.97 }}
-              className="absolute top-20 left-4 right-4 bg-white border border-slate-200 rounded-2xl p-6 shadow-xl"
-            >
-              <div className="flex flex-col gap-1">
-                {navItems.map((item, index) => (
-                  <motion.a
-                    key={item.label}
-                    href={item.href}
-                    onClick={(e) => { e.preventDefault(); scrollToSection(item.href); }}
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.04 }}
-                    className="px-4 py-3 text-slate-700 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all text-base"
-                  >
-                    {item.label}
-                  </motion.a>
-                ))}
-              </div>
-            </motion.div>
+            {navItems.map((item) => (
+              <button
+                key={item.label}
+                onClick={() => scrollTo(item.href)}
+                className="w-full text-left px-3 py-3 text-[#888] hover:text-white hover:bg-white/5 rounded-lg transition-all text-sm"
+              >
+                {item.label}
+              </button>
+            ))}
+            <div className="mt-4 pt-4 border-t border-[#1e1e1e] flex gap-3">
+              <a href="https://github.com/ateebkhan96" target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-[#666] hover:text-white transition-colors">
+                <Github className="w-4 h-4" /> GitHub
+              </a>
+              <a href="https://linkedin.com/in/ateebk/" target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-[#666] hover:text-white transition-colors">
+                <Linkedin className="w-4 h-4" /> LinkedIn
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

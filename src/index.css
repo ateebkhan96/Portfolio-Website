@@ -4,85 +4,90 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 239 84% 60%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
-    --accent: 239 84% 60%;
-    --accent-foreground: 0 0% 100%;
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 142 71% 45%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 142 71% 45%;
+    --accent-foreground: 0 0% 4%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 239 84% 60%;
-    --radius: 0.625rem;
+    --border: 0 0% 13%;
+    --input: 0 0% 13%;
+    --ring: 142 71% 45%;
+    --radius: 0.5rem;
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  html {
-    scroll-behavior: smooth;
-  }
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
   body {
-    @apply bg-background text-foreground antialiased;
+    background-color: #0a0a0a;
+    color: #fafafa;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    @apply antialiased;
   }
 }
 
 @layer utilities {
-  .font-display {
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  }
+  .font-display { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
 
   .gradient-text {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    background-image: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
   }
 
   .gradient-bg {
-    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    background: #22c55e;
   }
 
-  .card {
-    @apply bg-white border border-slate-200 shadow-sm rounded-2xl;
+  .card-dark {
+    background: #111111;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
   }
 
   .pill {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-50 text-indigo-600 border border-indigo-100;
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: #22c55e;
+    border: 1px solid #166534;
+    background: rgba(34,197,94,0.08);
+    text-transform: uppercase;
   }
 
   .skill-tag {
-    @apply px-3 py-1.5 rounded-lg bg-slate-50 text-slate-700 text-sm border border-slate-200 hover:bg-indigo-50 hover:text-indigo-600 hover:border-indigo-200 transition-all cursor-default;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: #161616;
+    color: #888;
+    font-size: 0.75rem;
+    border: 1px solid #222;
+    transition: all 0.2s;
+    cursor: default;
   }
-
-  .dot-grid {
-    background-image: radial-gradient(circle, #CBD5E1 1px, transparent 1px);
-    background-size: 24px 24px;
+  .skill-tag:hover {
+    background: rgba(34,197,94,0.08);
+    color: #22c55e;
+    border-color: #166534;
   }
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-::-webkit-scrollbar-thumb {
-  background: #c7d2fe;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #a5b4fc;
-}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #22c55e44; }

@@ -1,195 +1,117 @@
-import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, ChevronDown, ExternalLink, MapPin } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ArrowRight, Download, MapPin } from 'lucide-react';
+
+const stats = [
+  { value: '3+', label: 'Years Experience' },
+  { value: '4+', label: 'Deployed Projects' },
+  { value: '10+', label: 'ML Technologies' },
+  { value: '~99%', label: 'Thesis Accuracy' },
+];
 
 const Hero = () => {
-  const [displayText, setDisplayText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [loopNum, setLoopNum] = useState(0);
-  const roles = ['Machine Learning Engineer', 'Computer Vision Specialist', 'RAG & LLM Builder'];
-  const period = 2000;
-  const deltaRef = useRef(100);
-
-  useEffect(() => {
-    const tick = () => {
-      const i = loopNum % roles.length;
-      const fullText = roles[i];
-      if (isDeleting) {
-        setDisplayText(fullText.substring(0, displayText.length - 1));
-        deltaRef.current = 50;
-      } else {
-        setDisplayText(fullText.substring(0, displayText.length + 1));
-        deltaRef.current = 100;
-      }
-      if (!isDeleting && displayText === fullText) {
-        deltaRef.current = period;
-        setIsDeleting(true);
-      } else if (isDeleting && displayText === '') {
-        setIsDeleting(false);
-        setLoopNum(loopNum + 1);
-        deltaRef.current = 500;
-      }
-    };
-    const timer = setTimeout(tick, deltaRef.current);
-    return () => clearTimeout(timer);
-  }, [displayText, isDeleting, loopNum]);
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) element.scrollIntoView({ behavior: 'smooth' });
-  };
+  const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-50">
-      {/* Dot grid */}
-      <div className="absolute inset-0 dot-grid opacity-60" />
-      {/* Fade edges */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-50/0 via-slate-50/0 to-slate-50" />
-      <div className="absolute inset-0 bg-gradient-to-r from-slate-50 via-transparent to-slate-50" />
-
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-        >
-          {/* Available badge */}
+    <section id="hero" className="relative min-h-screen flex flex-col bg-[#0a0a0a]">
+      {/* Main hero content */}
+      <div className="flex-1 max-w-7xl mx-auto w-full px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12 pt-28 pb-10">
+        {/* Left — text */}
+        <div className="flex-1 min-w-0">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.15, duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 mb-10"
-          >
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-sm text-emerald-700 font-medium">Open to opportunities</span>
-          </motion.div>
-
-          {/* Name */}
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25, duration: 0.6 }}
-            className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-slate-900 mb-4 tracking-tight"
+            transition={{ duration: 0.6 }}
           >
-            Ateeb Ahmed{' '}
-            <span className="gradient-text">Khan</span>
-          </motion.h1>
+            <span className="pill mb-6 inline-flex">ML Engineer</span>
 
-          {/* Typing animation */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35, duration: 0.5 }}
-            className="text-xl sm:text-2xl md:text-3xl text-slate-500 mb-4 h-10"
-          >
-            <span className="gradient-text font-semibold">{displayText}</span>
-            <span className="animate-pulse text-indigo-400 ml-0.5">|</span>
-          </motion.div>
+            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.07] tracking-tight mb-6">
+              Building systems that{' '}
+              <span className="gradient-text">see, learn</span>
+              {' '}and understand.
+            </h1>
 
-          {/* Location */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.42, duration: 0.5 }}
-            className="flex items-center justify-center gap-1.5 text-slate-400 mb-6"
-          >
-            <MapPin className="w-4 h-4" />
-            <span className="text-sm">Akola, Maharashtra · Open to relocation (Pune / Bengaluru / Hyderabad) & remote</span>
-          </motion.div>
+            <p className="text-[#666] text-lg leading-relaxed mb-4 max-w-xl">
+              I build, train and deploy machine learning models that solve real-world problems —
+              from medical image analysis to production RAG systems.
+            </p>
 
-          {/* Tagline */}
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.48, duration: 0.5 }}
-            className="text-slate-500 text-lg max-w-2xl mx-auto mb-10 leading-relaxed"
-          >
-            Building intelligent systems that see, learn, and understand — from research to deployed production apps.
-          </motion.p>
+            <div className="flex items-center gap-1.5 text-[#555] text-sm mb-8">
+              <MapPin className="w-4 h-4" />
+              <span>Akola, Maharashtra · Open to relocation (Pune / Bengaluru / Hyderabad) & remote</span>
+            </div>
 
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.55, duration: 0.5 }}
-            className="flex flex-col sm:flex-row gap-3 justify-center mb-12"
-          >
-            <Button
-              onClick={() => scrollToSection('projects')}
-              className="gradient-bg text-white px-7 py-5 text-base rounded-xl hover:opacity-90 transition-all shadow-md shadow-indigo-200"
-            >
-              <ExternalLink className="w-4 h-4 mr-2" />
-              View Projects
-            </Button>
-            <Button
-              onClick={() => scrollToSection('contact')}
-              variant="outline"
-              className="border-slate-300 text-slate-700 px-7 py-5 text-base rounded-xl hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-600 transition-all"
-            >
-              Contact Me
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              className="border-slate-300 text-slate-700 px-7 py-5 text-base rounded-xl hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-600 transition-all"
-            >
-              <a href="/Resume/Ateeb_Khan_Resume.pdf" target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="w-4 h-4 mr-2" />
-                Resume
-              </a>
-            </Button>
-          </motion.div>
-
-          {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.62, duration: 0.5 }}
-            className="flex justify-center gap-3"
-          >
-            {[
-              { href: 'https://linkedin.com/in/ateebk/', label: 'LinkedIn', icon: <Linkedin className="w-5 h-5" /> },
-              { href: 'https://github.com/ateebkhan96', label: 'GitHub', icon: <Github className="w-5 h-5" /> },
-              {
-                href: 'https://x.com/theAteebKhan',
-                label: 'X',
-                icon: (
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                  </svg>
-                ),
-              },
-            ].map((s) => (
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button
+                onClick={() => scrollTo('projects')}
+                className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-green-500 text-black font-semibold text-sm hover:bg-green-400 transition-all"
+              >
+                View My Work <ArrowRight className="w-4 h-4" />
+              </button>
               <a
-                key={s.label}
-                href={s.href}
+                href="/Resume/Ateeb_Khan_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                title={s.label}
-                className="w-11 h-11 rounded-xl border border-slate-200 bg-white flex items-center justify-center text-slate-500 hover:text-indigo-600 hover:border-indigo-300 hover:bg-indigo-50 transition-all shadow-sm"
+                className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-[#2a2a2a] text-white font-semibold text-sm hover:border-[#444] hover:bg-white/5 transition-all"
               >
-                {s.icon}
+                <Download className="w-4 h-4" /> Download Resume
               </a>
-            ))}
+            </div>
           </motion.div>
+        </div>
+
+        {/* Right — visual */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="w-full lg:w-[480px] shrink-0"
+        >
+          <div className="relative rounded-2xl overflow-hidden border border-[#1e1e1e]" style={{ aspectRatio: '4/3' }}>
+            <img
+              src="/project-brain-tumor.jpg"
+              alt="Brain Tumor MRI Detection"
+              className="w-full h-full object-cover"
+              style={{ filter: 'brightness(0.75)' }}
+            />
+            {/* Overlay card */}
+            <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black via-black/70 to-transparent">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-white font-semibold text-sm font-display">Brain Tumor Detection</p>
+                  <p className="text-[#666] text-xs mt-0.5">YOLO11 · 95.1% mAP@0.5 · Live on Streamlit</p>
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                  <span className="text-green-400 text-xs font-medium">Live</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Stats bar */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer"
-        onClick={() => scrollToSection('about')}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+        className="border-t border-[#1a1a1a] bg-[#0d0d0d]"
       >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          <ChevronDown className="w-7 h-7 text-slate-400 hover:text-indigo-500 transition-colors" />
-        </motion.div>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#1a1a1a]">
+            {stats.map((stat, i) => (
+              <div key={i} className="flex items-center gap-4 py-6 px-6 first:pl-0 last:pr-0">
+                <div className="w-9 h-9 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center text-green-500 text-lg font-bold shrink-0">
+                  {i === 0 ? '👤' : i === 1 ? '🚀' : i === 2 ? '⚙️' : '🎯'}
+                </div>
+                <div>
+                  <p className="text-2xl font-extrabold font-display text-white leading-none">{stat.value}</p>
+                  <p className="text-[#555] text-xs mt-1">{stat.label}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </motion.div>
     </section>
   );
