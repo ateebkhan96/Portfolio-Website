@@ -19,7 +19,7 @@ const projects = [
     image: '/project-pricing.jpg',
     tags: ['LangChain', 'ChromaDB', 'Groq', 'LLaMA 3.3-70B', 'Streamlit'],
     metrics: 'Fully deployed',
-    demoLink: 'https://ateebkhan96-document-qa-rag-app-1u18bq.streamlit.app/',
+    demoLink: 'https://document-qna-rag-app.streamlit.app/',
     githubLink: 'https://github.com/ateebkhan96',
   },
   {
